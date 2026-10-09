@@ -2,15 +2,17 @@
 
 支持在 dsh Web 的设置页动态配置MCP服务器，并实时生效
 
-- 查看服务器列表。绿点是已连接，红点是连接异常
+## 能力概览
+
+1. 查看服务器列表。绿点是已连接，红点是连接异常
 
 ![MCP 服务器列表](assets/mcp-list.png)
 
-- 查看MCP工具与说明
+2. 查看MCP工具与说明
 
 ![展开后的工具列表](assets/mcp-tools.png)
 
-- 支持JSON格式配置MCP（同cursor）
+3. JSON格式配置MCP（同cursor）
 
 ![JSON 配置](assets/mcp-editor.png)
 
