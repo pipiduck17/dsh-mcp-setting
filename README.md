@@ -18,23 +18,17 @@
 
 ## 安装
 
-在 deepseek-harness 仓库根目录先打包，再装进 Web profile：
+ npm 安装：
+
+```sh
+pnpm dsh plugin --profile web add @pipiduck/dsh-mcp-setting --registry https://registry.npmjs.org/
+```
+
+或者直接拉源码下来跑：
 
 ```sh
 node plugin/dsh-mcp-setting/build.mjs
 pnpm dsh plugin --profile web add file:./plugin/dsh-mcp-setting
-```
-
-也可以直接装 GitHub 上的这份仓库：
-
-```sh
-pnpm dsh plugin --profile web add github:pipiduck17/dsh-mcp-setting
-```
-
-发布到 npm 之后可以按包名安装：
-
-```sh
-pnpm dsh plugin --profile web add @pipiduck/dsh-mcp-setting
 ```
 
 启动时不要再加 `--patch`，否则会和装好的插件各挂一行：
@@ -42,10 +36,6 @@ pnpm dsh plugin --profile web add @pipiduck/dsh-mcp-setting
 ```sh
 pnpm dsh web
 ```
-
-浏览器打开终端里打印的 `http://127.0.0.1:3080/?token=...`，进入 **设置 → MCP**。
-
-改了源码之后要重新打包再装一次。`plugin add` 放进 profile 的是一份拷贝，不会跟着源码变。
 
 ## 调试
 

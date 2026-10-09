@@ -4,14 +4,14 @@
   "description": "Add and remove MCP servers from the dsh Web settings page.",
   "license": "MIT",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "exports": {
-    ".": "./lib/index.js",
-    "./client": "./lib/client.js",
+    ".": "./dist/index.js",
+    "./client": "./dist/client.js",
     "./package.json": "./package.json"
   },
   "files": [
-    "lib",
+    "dist",
     "assets",
     "cordis.patch.yml",
     "README.md"

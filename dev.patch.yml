@@ -1,5 +1,5 @@
 # Debug overlay. Host loads this folder's src/index.ts. Saving a file under
-# plugin/dsh-mcp-setting/ reloads that host plugin. The page reloads when lib/client.js is rewritten.
+# plugin/dsh-mcp-setting/ reloads that host plugin. The page reloads when dist/client.js is rewritten.
 
 - id: hmr
   disabled: false
