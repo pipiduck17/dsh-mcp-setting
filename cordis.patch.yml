@@ -1,0 +1,5 @@
+# Web settings page that mounts one dsh-mcp-client row per saved server.
+
+- insert:
+    - id: dsh-mcp-setting
+      name: '@siasywang/dsh-mcp-setting'
