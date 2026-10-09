@@ -1,7 +1,7 @@
 /**
  * Settings page that stores Cursor-style MCP JSON.
  *
- * @module @siasywang/dsh-mcp-setting/client
+ * @module @pipiduck/dsh-mcp-setting/client
  */
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'

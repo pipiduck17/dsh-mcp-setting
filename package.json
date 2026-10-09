@@ -1,7 +1,6 @@
 {
-  "name": "@siasywang/dsh-mcp-setting",
+  "name": "@pipiduck/dsh-mcp-setting",
   "version": "0.1.0",
-  "private": true,
   "description": "Add and remove MCP servers from the dsh Web settings page.",
   "license": "MIT",
   "type": "module",
@@ -13,6 +12,7 @@
   },
   "files": [
     "lib",
+    "assets",
     "cordis.patch.yml",
     "README.md"
   ],

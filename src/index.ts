@@ -1,7 +1,7 @@
 /**
  * Mount one `dsh-mcp-client` instance per server saved from the Web settings page.
  *
- * @module @siasywang/dsh-mcp-setting
+ * @module @pipiduck/dsh-mcp-setting
  */
 
 import type { Context } from '@deepseek-ai/cordis'

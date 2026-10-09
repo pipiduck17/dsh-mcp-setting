@@ -31,6 +31,12 @@ pnpm dsh plugin --profile web add file:./plugin/dsh-mcp-setting
 pnpm dsh plugin --profile web add github:pipiduck17/dsh-mcp-setting
 ```
 
+发布到 npm 之后可以按包名安装：
+
+```sh
+pnpm dsh plugin --profile web add @pipiduck/dsh-mcp-setting
+```
+
 启动时不要再加 `--patch`，否则会和装好的插件各挂一行：
 
 ```sh
