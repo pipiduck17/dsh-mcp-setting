@@ -37,6 +37,44 @@ pnpm dsh plugin --profile web add file:./plugin/dsh-mcp-setting
 pnpm dsh web
 ```
 
+## 非本机部署
+
+用 IP 或域名打开时，dsh 默认不把设置页的输入写进磁盘，需要放行web端修改 `~/.dsh/settings.yaml` 的限制。
+
+要让服务器上的页面也能保存，改 deepseek-harness 里这两处，然后重新构建客户端并重启 `dsh web`。
+
+`packages/client/ui-settings/src/client/index.ts`：设置一律写入 Host，不再按本机地址丢掉。
+
+```ts
+const persistence = ctx.remote.$host.isLoopback ? 'host' : 'memory'
+```
+
+改成：
+
+```ts
+const persistence = 'host'
+```
+
+`packages/client/ui-settings-general/src/client/index.ts`：远程页面也显示「打开配置文件」。
+
+```ts
+const documentController = ctx.remote.$host.isLoopback
+  ? new SettingsDocumentStore(ctx, ctx.settingsScope.describe())
+  : undefined
+```
+
+改成：
+
+```ts
+const documentController = new SettingsDocumentStore(ctx, ctx.settingsScope.describe())
+```
+
+改完后执行，重新编译设置页源码：
+
+```sh
+pnpm exec tsdown --config packages/client/ui-settings/tsdown.config.ts
+pnpm exec tsdown --config packages/client/ui-settings-general/tsdown.config.ts
+```
 ## 调试
 
 支持热更新调试。在 deepseek-harness 仓库根目录开两个终端：
