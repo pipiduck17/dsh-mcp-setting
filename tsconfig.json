@@ -10,7 +10,10 @@
     "noEmit": true,
     "allowImportingTsExtensions": true,
     "types": ["react"],
-    "typeRoots": ["../../packages/client/ui-settings/node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "paths": {
+      "@deepseek-ai/dsh-client-ui-renderer/client": ["../../packages/client/ui-renderer/lib/types/client/index.d.ts"]
+    }
   },
   "include": ["src"]
 }
