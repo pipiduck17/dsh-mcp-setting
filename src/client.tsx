@@ -10,7 +10,7 @@ import type { Context as ClientContext } from '@deepseek-ai/cordis'
 import type {} from '@deepseek-ai/dsh-client-locale/client'
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client'
 import type {} from '@deepseek-ai/dsh-client-ui-settings/client'
-import type { SettingsScope } from '@deepseek-ai/dsh-client-ui-settings/client'
+import type { ConfigForm } from '@deepseek-ai/dsh-client-ui-settings/client'
 import { parseMcpJson, type McpSettingSettings, type McpSettingStatusSettings } from './model.ts'
 
 const NS = 'settings.dshMcpSetting'
@@ -68,7 +68,7 @@ const en: Record<keyof typeof zh, string> = {
   toolsPending: 'Tool names are still syncing.',
 }
 
-export const inject = ['slots', 'locale', 'settingsScope']
+export const inject = ['slots', 'locale', 'configForms']
 
 /** Register the MCP settings page. */
 export function apply(ctx: ClientContext): void {
@@ -81,21 +81,19 @@ export function apply(ctx: ClientContext): void {
     }
   }, 'dsh-mcp-setting: dictionaries')
   const t = ctx.locale.bind(NS as never) as (key: keyof typeof zh, params?: Record<string, unknown>) => string
-  const scope = ctx.settingsScope.bind<McpSettingSettings>({ namespace: 'dsh-mcp-setting' })
-  const status = ctx.settingsScope.bind<McpSettingStatusSettings>({ namespace: 'dsh-mcp-setting-status' })
+  const scope = ctx.configForms.get<McpSettingSettings & McpSettingStatusSettings>('dsh-mcp-setting')
   ctx.slots.inject('settings.section', () => ctx.slots.register({
     name: 'settings.section',
     id: 'dsh-mcp-setting',
     order: 30,
     label: () => t('nav'),
-    inject: () => ({ scope, status, t }),
+    inject: () => ({ scope, t }),
   }, McpSection))
 }
 
 interface SectionProps {
   close: () => void
-  scope: SettingsScope<McpSettingSettings>
-  status: SettingsScope<McpSettingStatusSettings>
+  scope: ConfigForm<McpSettingSettings & McpSettingStatusSettings>
   t: (key: keyof typeof zh, params?: Record<string, unknown>) => string
 }
 
@@ -263,10 +261,9 @@ function JsonEditor({
   )
 }
 
-function McpSection({ scope, status, t }: SectionProps) {
+function McpSection({ scope, t }: SectionProps) {
   const snapshot = useSyncExternalStore(listener => scope.subscribe(listener), () => scope.getSnapshot())
-  const statusSnapshot = useSyncExternalStore(listener => status.subscribe(listener), () => status.getSnapshot())
-  const rows = statusSnapshot.value?.servers ?? []
+  const rows = snapshot.value?.servers ?? []
   const attention = rows.filter(row => row.state !== 'connected')
   const connected = rows.filter(row => row.state === 'connected')
   const [text, setText] = useState('')

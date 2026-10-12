@@ -18,7 +18,7 @@
 
 ## 安装
 
- npm 安装：
+需要 dsh `0.2.0-rc.2` 或更新版本。
 
 ```sh
 pnpm dsh plugin --profile web add @pipiduck/dsh-mcp-setting --registry https://registry.npmjs.org/
